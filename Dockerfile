@@ -4,7 +4,9 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-RUN apt-get install libasound2 git curl zip wget libgtk2.0-0 libnss3-1d libgconf2-4 libxss1 libxtst6 ruby -y  # install all dependencies needed
+RUN sudo apt-get update  # quick update
+RUN sudo apt-get install -y apt-transport-https  # need https support for the next few installs
+RUN sudo apt-get install libasound2 git curl zip wget libgtk2.0-0 libnss3-1d libgconf2-4 libxss1 libxtst6 ruby -y  # install all dependencies needed
 RUN git clone https://github.com/WhisperSystems/Signal-Desktop.git  # clone the repository (note: we clone from master which is dangerous)
 RUN curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -  # install npm and add a source for nodejs
 RUN sudo apt-get install -y nodejs  # install nodejs from the above source
